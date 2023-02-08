@@ -23,6 +23,12 @@ public class PersonController {
     }
 
 
+    @GetMapping("/getAll")
+    public List<Person> getAll() {
+        return this.people;
+    }
+
+
 
 
 }
