@@ -37,7 +37,7 @@ public class PersonController {
 
     @GetMapping("/get/{id}")
     public Person getPerson(@PathVariable int id) { // pulls id from the path (url)
-        return this.getPerson(id);
+        return this.service.getById(id);
     }
 
     @PatchMapping("/update/{id}")
