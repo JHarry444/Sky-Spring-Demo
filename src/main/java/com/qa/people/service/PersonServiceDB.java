@@ -1,9 +1,12 @@
 package com.qa.people.service;
 
 import com.qa.people.entities.Person;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+//@Service
 public class PersonServiceDB implements PersonService{
     @Override
     public Person createPerson(Person p) {
