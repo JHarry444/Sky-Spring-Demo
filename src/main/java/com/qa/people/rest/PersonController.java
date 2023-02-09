@@ -1,16 +1,24 @@
 package com.qa.people.rest;
 
 import com.qa.people.entities.Person;
+import com.qa.people.service.PersonService;
+import com.qa.people.service.PersonServiceDB;
+import com.qa.people.service.PersonServiceList;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class PersonController {
 
+    // the service variable is a dependency
+    private PersonService service;
+
+    public PersonController(PersonService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String greeting() {
