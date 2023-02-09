@@ -42,7 +42,7 @@ public class PersonController {
 
     @PatchMapping("/update/{id}")
     public Person updatePerson(@PathVariable int id, @PathParam("name") String name, @PathParam("age") Integer age, @PathParam("job") String job) {
-        return this.updatePerson(id, name, age, job);
+        return this.service.update(id, name, age, job);
     }
 
 
