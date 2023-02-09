@@ -2,8 +2,6 @@ package com.qa.people.rest;
 
 import com.qa.people.entities.Person;
 import com.qa.people.service.PersonService;
-import com.qa.people.service.PersonServiceDB;
-import com.qa.people.service.PersonServiceList;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -45,11 +43,9 @@ public class PersonController {
         return this.service.update(id, name, age, job);
     }
 
-
     @DeleteMapping("/remove/{id}")
     public Person removePerson(@PathVariable int id) {
         return this.service.remove(id);
     }
-
 
 }

@@ -12,8 +12,8 @@ public class PeopleApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PeopleApplication.class, args);
 		// DEMO PURPOSES ONLY - PLZ DO NOT STEAL
-		new PersonController(new PersonServiceList());
-		new PersonController(new PersonServiceDB());
+//		new PersonController(new PersonServiceList());
+//		new PersonController(new PersonServiceDB());
 	}
 
 }
