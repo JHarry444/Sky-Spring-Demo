@@ -12,7 +12,6 @@ public interface PersonService {
 
     List<Person> getAll();
 
-
     Person update(int id, String name, Integer age, String job);
 
     Person remove(int id);

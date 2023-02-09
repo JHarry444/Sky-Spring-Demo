@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-@Service
+//@Service
 public class PersonServiceList implements PersonService {
 
     private List<Person> people = new ArrayList<>();

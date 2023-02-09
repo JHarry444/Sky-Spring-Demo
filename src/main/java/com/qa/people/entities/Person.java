@@ -11,7 +11,7 @@ public class Person {
     private Integer id;
 
     @Size(min = 2, max = 50)
-    @Column(nullable = false, name = "fullname") // NOT NULL
+    @Column(nullable = false) // NOT NULL
     private String name;
 
     @Min(0)
