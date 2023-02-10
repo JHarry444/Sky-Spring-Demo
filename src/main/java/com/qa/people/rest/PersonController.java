@@ -1,6 +1,7 @@
 package com.qa.people.rest;
 
 import com.qa.people.dto.PersonDTO;
+import com.qa.people.dto.PersonReqDTO;
 import com.qa.people.entities.Person;
 import com.qa.people.service.PersonService;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +29,9 @@ public class PersonController {
     }
 
     @PostMapping("/create")
-    public PersonDTO addPerson(@RequestBody @Valid Person person) { // pull person from the body of the req
-        Person created =  this.service.createPerson(person);
+    public PersonDTO addPerson(@RequestBody PersonReqDTO person) { // pull person from the body of the req
+        Person toCreate = new Person(person.getFullName(), person.getOldNess(), person.getOccupation(), person.getNotNiNumber());
+        Person created =  this.service.createPerson(toCreate);
 
         PersonDTO dto = new PersonDTO(created.getName(), created.getAge(), created.getJob());
 
