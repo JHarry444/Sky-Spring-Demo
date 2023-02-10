@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class PersonController {
@@ -36,8 +38,23 @@ public class PersonController {
 
     @GetMapping("/getAll")
     public List<PersonDTO> getAll() {
+        List<Person> found =  this.service.getAll();
+        List<PersonDTO> dtos = new ArrayList<>();
+//        standard for loop:
+//        for (int i = 0; i < found.size(); i++) {
+//            Person person = found.get(i);
+//            PersonDTO dto = new PersonDTO(person.getName(), person.getAge(), person.getJob());
+//            dtos.add(dto);
+//        }
+//      lambda version
+//        return found.stream().map(p -> new PersonDTO(p.getName(), p.getAge(), p.getJob())).collect(Collectors.toList());
+        // For each Person person in found:
+        for (Person person : found){
+            PersonDTO dto = new PersonDTO(person.getName(), person.getAge(), person.getJob());
+            dtos.add(dto);
+        }
 
-        return this.service.getAll();
+        return dtos;
     }
 
     @GetMapping("/get/{id}")
