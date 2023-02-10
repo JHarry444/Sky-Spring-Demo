@@ -12,6 +12,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -43,6 +45,19 @@ public class PersonIntegrationTest {
         PersonDTO created = new PersonDTO("Jordan", 28, "Trainer");
         ResultMatcher checkBody = content().json(this.mapper.writeValueAsString(created));
         // DO THE REQ AND CHECK THE RESPONSE
+        this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
+    }
+
+
+    @Test
+    void testGet() throws Exception {
+
+        RequestBuilder req = MockMvcRequestBuilders.get("/get/1");
+
+        ResultMatcher checkStatus = MockMvcResultMatchers.status().isOk();
+        PersonDTO person = new PersonDTO("JB", 24, "Trainer");
+        ResultMatcher checkBody = MockMvcResultMatchers.content().json(this.mapper.writeValueAsString(person));
+
         this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
     }
 }
