@@ -26,12 +26,17 @@ public class PersonController {
     }
 
     @PostMapping("/create")
-    public Person addPerson(@RequestBody @Valid Person person) { // pull person from the body of the req
-        return this.service.createPerson(person);
+    public PersonDTO addPerson(@RequestBody @Valid Person person) { // pull person from the body of the req
+        Person created =  this.service.createPerson(person);
+
+        PersonDTO dto = new PersonDTO(created.getName(), created.getAge(), created.getJob());
+
+        return dto;
     }
 
     @GetMapping("/getAll")
-    public List<Person> getAll() {
+    public List<PersonDTO> getAll() {
+
         return this.service.getAll();
     }
 
@@ -44,13 +49,19 @@ public class PersonController {
     }
 
     @PatchMapping("/update/{id}")
-    public Person updatePerson(@PathVariable int id, @PathParam("name") String name, @PathParam("age") Integer age, @PathParam("job") String job) {
-        return this.service.update(id, name, age, job);
+    public PersonDTO updatePerson(@PathVariable int id, @PathParam("name") String name, @PathParam("age") Integer age, @PathParam("job") String job) {
+        Person updated = this.service.update(id, name, age, job);
+
+        PersonDTO dto = new PersonDTO(updated.getName(), updated.getAge(), updated.getJob());
+        return dto;
     }
 
     @DeleteMapping("/remove/{id}")
-    public Person removePerson(@PathVariable int id) {
-        return this.service.remove(id);
+    public PersonDTO removePerson(@PathVariable int id) {
+        Person removed =  this.service.remove(id);
+
+        PersonDTO dto = new PersonDTO(removed.getName(), removed.getAge(), removed.getJob());
+        return dto;
     }
 
 }
