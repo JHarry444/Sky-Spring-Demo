@@ -4,13 +4,13 @@ import com.qa.people.dto.PersonDTO;
 import com.qa.people.dto.PersonReqDTO;
 import com.qa.people.entities.Person;
 import com.qa.people.service.PersonService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class PersonController {
@@ -29,13 +29,13 @@ public class PersonController {
     }
 
     @PostMapping("/create")
-    public PersonDTO addPerson(@RequestBody PersonReqDTO person) { // pull person from the body of the req
+    public ResponseEntity<PersonDTO> addPerson(@RequestBody PersonReqDTO person) { // pull person from the body of the req
         Person toCreate = new Person(person.getFullName(), person.getOldNess(), person.getOccupation(), person.getNotNiNumber());
         Person created =  this.service.createPerson(toCreate);
 
         PersonDTO dto = new PersonDTO(created.getName(), created.getAge(), created.getJob());
 
-        return dto;
+        return new ResponseEntity<PersonDTO>(dto, HttpStatus.CREATED);
     }
 
     @GetMapping("/getAll")
