@@ -1,8 +1,8 @@
 package com.qa.people.rest;
 
+import com.qa.people.dto.PersonDTO;
 import com.qa.people.entities.Person;
 import com.qa.people.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,8 +36,11 @@ public class PersonController {
     }
 
     @GetMapping("/get/{id}")
-    public Person getPerson(@PathVariable int id) { // pulls id from the path (url)
-        return this.service.getById(id);
+    public PersonDTO getPerson(@PathVariable int id) { // pulls id from the path (url)
+        Person found = this.service.getById(id);
+        PersonDTO dto = new PersonDTO(found.getName(), found.getAge(), found.getJob());
+
+        return dto;
     }
 
     @PatchMapping("/update/{id}")

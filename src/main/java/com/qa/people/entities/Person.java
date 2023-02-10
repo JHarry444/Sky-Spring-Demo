@@ -24,10 +24,13 @@ public class Person {
 //    @NotBlank -> "   "
     private String job;
 
-    public Person(String name, int age, String job) {
+    private String niNumber;
+
+    public Person(String name, int age, String job, String niNumber) {
         this.name = name;
         this.age = age;
         this.job = job;
+        this.niNumber = niNumber;
     }
 
     // REQUIRED
@@ -40,6 +43,14 @@ public class Person {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNiNumber() {
+        return niNumber;
+    }
+
+    public void setNiNumber(String niNumber) {
+        this.niNumber = niNumber;
     }
 
     public String getName() {
