@@ -47,7 +47,7 @@ public class PersonController {
 				person.getNotNiNumber());
 		Person created = this.service.createPerson(toCreate);
 
-		PersonDTO dto = new PersonDTO(created.getName(), created.getAge(), created.getJob());
+		PersonDTO dto = new PersonDTO(created.getId(), created.getName(), created.getAge(), created.getJob());
 
 		return new ResponseEntity<PersonDTO>(dto, HttpStatus.CREATED);
 	}
@@ -66,7 +66,7 @@ public class PersonController {
 //        return found.stream().map(p -> new PersonDTO(p.getName(), p.getAge(), p.getJob())).collect(Collectors.toList());
 		// For each Person person in found:
 		for (Person person : found) {
-			PersonDTO dto = new PersonDTO(person.getName(), person.getAge(), person.getJob());
+			PersonDTO dto = new PersonDTO(person.getId(), person.getName(), person.getAge(), person.getJob());
 			dtos.add(dto);
 		}
 
@@ -76,7 +76,7 @@ public class PersonController {
 	@GetMapping("/get/{id}")
 	public PersonDTO getPerson(@PathVariable int id) { // pulls id from the path (url)
 		Person found = this.service.getById(id);
-		PersonDTO dto = new PersonDTO(found.getName(), found.getAge(), found.getJob());
+		PersonDTO dto = new PersonDTO(found.getId(), found.getName(), found.getAge(), found.getJob());
 
 		return dto;
 	}
@@ -86,7 +86,7 @@ public class PersonController {
 			@PathParam("job") String job) {
 		Person updated = this.service.update(id, name, age, job);
 
-		PersonDTO dto = new PersonDTO(updated.getName(), updated.getAge(), updated.getJob());
+		PersonDTO dto = new PersonDTO(updated.getId(), updated.getName(), updated.getAge(), updated.getJob());
 		return dto;
 	}
 
@@ -94,7 +94,7 @@ public class PersonController {
 	public PersonDTO removePerson(@PathVariable int id) {
 		Person removed = this.service.remove(id);
 
-		PersonDTO dto = new PersonDTO(removed.getName(), removed.getAge(), removed.getJob());
+		PersonDTO dto = new PersonDTO(removed.getId(), removed.getName(), removed.getAge(), removed.getJob());
 		return dto;
 	}
 

@@ -2,43 +2,53 @@ package com.qa.people.dto;
 
 public class PersonDTO {
 
-    private String fullName;
+	private Integer id;
 
-    private Integer oldNess;
+	private String fullName;
 
-    private String occupation;
+	private Integer oldNess;
 
+	private String occupation;
 
-    public PersonDTO(String fullName, Integer oldNess, String occupation) {
-        this.fullName = fullName;
-        this.oldNess = oldNess;
-        this.occupation = occupation;
-    }
+	public PersonDTO(Integer id, String fullName, Integer oldNess, String occupation) {
+		this.id = id;
+		this.fullName = fullName;
+		this.oldNess = oldNess;
+		this.occupation = occupation;
+	}
 
-    public PersonDTO() {
-    }
+	public PersonDTO() {
+	}
 
-    public String getFullName() {
-        return fullName;
-    }
+	public Integer getId() {
+		return this.id;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getOldNess() {
-        return oldNess;
-    }
+	public String getFullName() {
+		return fullName;
+	}
 
-    public void setOldNess(Integer oldNess) {
-        this.oldNess = oldNess;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    public String getOccupation() {
-        return occupation;
-    }
+	public Integer getOldNess() {
+		return oldNess;
+	}
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
+	public void setOldNess(Integer oldNess) {
+		this.oldNess = oldNess;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
 }
